@@ -1,6 +1,6 @@
-0x00. Python - Hello, World
+## 0x00. Python - Hello, World
 
-Learning Objectives
+### Learning Objectives
 At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
 
 Why Python programming is awesome
@@ -13,4 +13,6 @@ How to print text and variables using print
 How to use strings
 What are indexing and slicing in Python
 What is the official Python coding style and how to check your code with pycodestyle
-Author:Kyanzi Hassan Musisi
+  
+### aUTHOR
+kYANZI hAssAn MusIsi [![M](https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/30px-Twitter_Bird.svg.png)](https://twitter.com/hassan_kyanzi) 

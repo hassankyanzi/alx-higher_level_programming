@@ -7,10 +7,13 @@ An introductory project on:
 - How to use the built-in function `dir()`
 - How to prevent code in your script from being executed when imported
 - How to use command line arguments with your Python programs
+
 ## Requirements
 - Python 3.4
 - pep8 1.7
+
 ## File Descriptions
+
 ### Mandatory
 **[0-add.py](0-add.py)** - imports the function `def add(a, b):` from the file `add_0.py` and prints the result of the addition `1 + 2 = 3`
   * should not be executed when imported
@@ -120,4 +123,5 @@ An introductory project on:
   - any string literal
   - any system calls
 
-  Author - KYANZI HASSAN Musisi
+### aUTHOR
+kYANZI hAssAn MusIsi [![M](https://upload.wikimedia.org/wikipedia/fr/thumb/c/c8/Twitter_Bird.svg/30px-Twitter_Bird.svg.png)](https://twitter.com/hassan_kyanzi)
