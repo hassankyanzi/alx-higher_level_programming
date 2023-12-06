@@ -1,14 +1,10 @@
 #!/usr/bin/python3
 def weight_average(my_list=[]):
-    if my_list is not None:
-        total = 0
-        frequency = 0
+    if my_list and len(my_list):
+        num = 0
+        dem = 0
         for tup in my_list:
-            (weight, occurence) = tup
-            total += (weight * occurence)
-            frequency += occurence
-        return (total/frequency) if frequency > 0 else 0
-    else:
-        return (0)
-
-# return(sum(a*b for a, b in my_list)/sum(b for a, b in my_list))
+            num += (tup[0] * tup[1])
+            dem += tup[1]
+        return (num / dem)
+    return 0
