@@ -23,4 +23,4 @@
 * Style guidelines: [PEP 8 (version 1.7)](https://www.python.org/dev/peps/pep-0008/) || [Google Style Python Docstrings](http://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html)
 ---
 ### Authors
-Kyanzi Hassan Musisi [![M](https://www.cleanpng.com/png-logo-quiz-2017-1624067/)](https://twitter.com/hassan_kyanzi)
+Kyanzi Hassan Musisi [![M](twitter-x-logo-png-9.png)](https://twitter.com/hassan_kyanzi)
