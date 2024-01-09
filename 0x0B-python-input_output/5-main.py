@@ -12,8 +12,8 @@ my_dict = {
     'places': [ "San Francisco", "Tokyo" ],
     'is_active': True,
     'info': {
-        'age': 36,
-        'average': 3.14
+    'age': 36,
+    'average': 3.14
     }
 }
 save_to_json_file(my_dict, filename)
