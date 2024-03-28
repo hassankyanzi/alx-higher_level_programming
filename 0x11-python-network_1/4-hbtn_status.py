@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
 """
-This script fetches the status from https://alx-intranet.hbtn.io/status using the requests package.
-It then displays the body of the response in a specific format.
+Fetches the status from https://alx-intranet.hbtn.io/status using the requests package.
+Then displays the body of the response in a specific format.
 """
 
 import requests
@@ -12,8 +12,12 @@ def fetch_status():
     Fetches the status from https://alx-intranet.hbtn.io/status.
     """
     url = "https://alx-intranet.hbtn.io/status"
-    response = requests.get(url)
-    return response.text
+    try:
+        response = requests.get(url)
+        response.raise_for_status()  # Raise an error for bad status codes
+        return response.text
+    except requests.exceptions.RequestException as e:
+        return f"Error: {e}"
 
 if __name__ == "__main__":
     status_body = fetch_status()
