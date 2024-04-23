@@ -1,31 +1,41 @@
 #!/usr/bin/node
 
-const request = require('request');
+const https = require('https');
 
 const movieId = process.argv[2];
 
 const apiUrl = `https://swapi.dev/api/films/${movieId}/`;
 
-request(apiUrl, (error, response, body) => {
-    if (error) {
-        console.error('Error:', error);
-    } else if (response.statusCode !== 200) {
-        console.error('Unexpected status code:', response.statusCode);
-    } else {
-        const filmData = JSON.parse(body);
+const options = {
+    rejectUnauthorized: false
+};
+
+https.get(apiUrl, options, (res) => {
+    let data = '';
+
+    res.on('data', (chunk) => {
+        data += chunk;
+    });
+
+    res.on('end', () => {
+        const filmData = JSON.parse(data);
         const charactersUrls = filmData.characters;
 
         charactersUrls.forEach(characterUrl => {
-            request(characterUrl, (error, response, body) => {
-                if (error) {
-                    console.error('Error:', error);
-                } else if (response.statusCode !== 200) {
-                    console.error('Unexpected status code:', response.statusCode);
-                } else {
-                    const characterData = JSON.parse(body);
+            https.get(characterUrl, options, (res) => {
+                let data = '';
+
+                res.on('data', (chunk) => {
+                    data += chunk;
+                });
+
+                res.on('end', () => {
+                    const characterData = JSON.parse(data);
                     console.log(characterData.name);
-                }
+                });
             });
         });
-    }
+    });
+}).on('error', (err) => {
+    console.error('Error:', err.message);
 });
