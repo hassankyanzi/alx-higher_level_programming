@@ -1,41 +1,46 @@
 #!/usr/bin/node
 
-const https = require('https');
+const request = require('request');
 
-const movieId = process.argv[2];
-
-const apiUrl = `https://swapi.dev/api/films/${movieId}/`;
-
-const options = {
-    rejectUnauthorized: false
-};
-
-https.get(apiUrl, options, (res) => {
-    let data = '';
-
-    res.on('data', (chunk) => {
-        data += chunk;
+function getDataFrom (url) {
+  return new Promise(function (resolve, reject) {
+    request(url, function (err, _res, body) {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(body);
+      }
     });
+  });
+}
 
-    res.on('end', () => {
-        const filmData = JSON.parse(data);
-        const charactersUrls = filmData.characters;
+function errHandler (err) {
+  console.log(err);
+}
 
-        charactersUrls.forEach(characterUrl => {
-            https.get(characterUrl, options, (res) => {
-                let data = '';
+function printMovieCharacters (movieId) {
+  const movieUri = `https://swapi-api.hbtn.io/api/films/${movieId}`;
 
-                res.on('data', (chunk) => {
-                    data += chunk;
-                });
+  getDataFrom(movieUri)
+    .then(JSON.parse, errHandler)
+    .then(function (res) {
+      const characters = res.characters;
+      const promises = [];
 
-                res.on('end', () => {
-                    const characterData = JSON.parse(data);
-                    console.log(characterData.name);
-                });
-            });
+      for (let i = 0; i < characters.length; ++i) {
+        promises.push(getDataFrom(characters[i]));
+      }
+
+      Promise.all(promises)
+        .then((results) => {
+          for (let i = 0; i < results.length; ++i) {
+            console.log(JSON.parse(results[i]).name);
+          }
+        })
+        .catch((err) => {
+          console.log(err);
         });
     });
-}).on('error', (err) => {
-    console.error('Error:', err.message);
-});
+}
+
+printMovieCharacters(process.argv[2]);
